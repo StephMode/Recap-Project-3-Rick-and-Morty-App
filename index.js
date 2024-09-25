@@ -1,4 +1,5 @@
 import CharacterCard from "./components/CharacterCard/CharacterCard.js";
+import NavButton from "./components/NavButton/NavButton.js";
 // geschweifte Klammern, um den epxort von mehreren Komponenten zu notieren
 // ohne geschweifte Klammern, wenn expo default
 
@@ -56,23 +57,41 @@ searchBar.addEventListener("submit", (event) => {
 
 // nicht vergessen: wenn ich auf das event eines evList zurückgreifen möchte, so muss ich das event als param für die callbakc fn deifnierten
 
-nextButton.addEventListener("click", () => {
+navigation.append(NavButton(handleButtonNext, "Next"));
+navigation.prepend(NavButton(handleButtonPrev, "Prev"));
+
+function handleButtonNext() {
   if (page === maxPage) return;
 
   page += 1; // short: page++;
   fetchCharacters();
-});
-prevButton.addEventListener("click", () => {
-  // if (page !== 1) {
-  // 	page -= 1; // short: page--;
-  // 	fetchCharacters(page);
-  // }
+}
 
-  if (page <= 1) return;
+function handleButtonPrev() {
+  if (page !== 1) {
+    page -= 1; // short: page--;
+    fetchCharacters(page);
+  }
+}
 
-  page -= 1; // short: page--;
-  fetchCharacters();
-});
+// nextButton.addEventListener("click", () => {
+//   if (page === maxPage) return;
+
+//   page += 1; // short: page++;
+//   fetchCharacters();
+// });
+
+// prevButton.addEventListener("click", () => {
+//   // if (page !== 1) {
+//   // 	page -= 1; // short: page--;
+//   // 	fetchCharacters(page);
+//   // }
+
+//   if (page <= 1) return;
+
+//   page -= 1; // short: page--;
+//   fetchCharacters();
+// });
 function updatePagination(page, maxPage) {
   pagination.textContent = `${page} / ${maxPage}`;
 }
