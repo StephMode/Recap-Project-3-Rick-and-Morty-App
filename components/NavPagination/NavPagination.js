@@ -1,5 +1,5 @@
-export default function UpdatePagination(page, maxPage) {
-  const pagination = document.querySelector('[data-js="pagination"]');
-
+export default function NavPagination(page, maxPage) {
+  const pagination = document.createElement("span");
   pagination.textContent = `${page} / ${maxPage}`;
+  return pagination;
 }

@@ -1,5 +1,5 @@
 import CharacterCard from "./components/CharacterCard/CharacterCard.js";
-import UpdatePagination from "./components/NavPagination/NavPagination.js";
+import NavPagination from "./components/NavPagination/NavPagination.js";
 // geschweifte Klammern, um den epxort von mehreren Komponenten zu notieren
 // ohne geschweifte Klammern, wenn expo default
 
@@ -11,12 +11,12 @@ const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
 const prevButton = document.querySelector('[data-js="button-prev"]');
 const nextButton = document.querySelector('[data-js="button-next"]');
-const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
 let page = 1;
 let maxPage = 1;
 let searchQuery = "";
+const pagination = NavPagination(page, maxPage);
 
 function renderAndAppendCharacterCard() {
   // const card = CharacterCard(); // entweder const mit value fn call und dann append() const aufnehmen
@@ -43,10 +43,9 @@ async function fetchCharacters() {
       )
     )
   );
-  UpdatePagination(page, maxPage);
+  pagination.textContent = `${page} / ${maxPage}`;
 }
 fetchCharacters();
-
 searchBar.addEventListener("submit", (event) => {
   event.preventDefault();
   const searchResult = event.target.query.value; // hier muss ich .query. adressieren, weil das der name meines input ist, der output des event wird quasi als object zurückgegeben, dass via .notation explizit adressiert werden
@@ -54,6 +53,7 @@ searchBar.addEventListener("submit", (event) => {
   console.log(searchQuery);
   fetchCharacters(); //die fn wird hier einfach nur gecalled, weil die URL in fetch characters sich dynamisch durch die temp literals anpasst und im eventLst die let searchQuery
 });
+navigation.append(pagination);
 
 // nicht vergessen: wenn ich auf das event eines evList zurückgreifen möchte, so muss ich das event als param für die callbakc fn deifnierten
 
