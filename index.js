@@ -25,10 +25,20 @@ async function fetchCharacters() {
   const response = await fetch(url);
   const data = await response.json();
   console.log(data);
+  data.results.forEach((card) =>
+    cardContainer.append(
+      CharacterCard(
+        card.image,
+        card.name,
+        card.status,
+        card.type,
+        card.episode.length
+      )
+    )
+  );
 }
 fetchCharacters();
 
-renderAndAppendCharacterCard();
 
 // States
 const maxPage = 1;
