@@ -1,6 +1,9 @@
 import SearchBar from "./components/SearchBar/SearchBar.js";
 import CharacterCard from "./components/CharacterCard/CharacterCard.js";
+import NavButton from "./components/NavButton/NavButton.js";
 import NavPagination from "./components/NavPagination/NavPagination.js";
+
+
 // geschweifte Klammern, um den epxort von mehreren Komponenten zu notieren
 // ohne geschweifte Klammern, wenn expo default
 
@@ -69,22 +72,38 @@ function handleSearch(query) {
 
 // nicht vergessen: wenn ich auf das event eines evList zurückgreifen möchte, so muss ich das event als param für die callbakc fn deifnierten
 
-nextButton.addEventListener("click", () => {
-	if (page === maxPage) return;
+navigation.append(NavButton(handleButtonNext, "Next"));
+navigation.prepend(NavButton(handleButtonPrev, "Prev"));
 
-	page += 1; // short: page++;
-	fetchCharacters();
-});
-prevButton.addEventListener("click", () => {
-	// if (page !== 1) {
-	// 	page -= 1; // short: page--;
-	// 	fetchCharacters(page);
-	// }
+function handleButtonNext() {
+  if (page === maxPage) return;
 
-	if (page <= 1) return;
+  page += 1; // short: page++;
+  fetchCharacters();
+}
 
-	page -= 1; // short: page--;
-	fetchCharacters();
-});
+function handleButtonPrev() {
+  if (page !== 1) {
+    page -= 1; // short: page--;
+    fetchCharacters(page);
+  }
+}
 
+// nextButton.addEventListener("click", () => {
+//   if (page === maxPage) return;
 
+//   page += 1; // short: page++;
+//   fetchCharacters();
+// });
+
+// prevButton.addEventListener("click", () => {
+//   // if (page !== 1) {
+//   // 	page -= 1; // short: page--;
+//   // 	fetchCharacters(page);
+//   // }
+
+//   if (page <= 1) return;
+
+//   page -= 1; // short: page--;
+//   fetchCharacters();
+// });
