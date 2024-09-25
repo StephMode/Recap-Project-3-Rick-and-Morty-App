@@ -20,6 +20,14 @@ function renderAndAppendCharacterCard() {
   // b) in append() schon das return implizit ist
 }
 
+async function fetchCharacters() {
+  const url = "https://rickandmortyapi.com/api/character";
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+}
+fetchCharacters();
+
 renderAndAppendCharacterCard();
 
 // States
