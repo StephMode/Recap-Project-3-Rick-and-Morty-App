@@ -1,4 +1,5 @@
 import CharacterCard from "./components/CharacterCard/CharacterCard.js";
+import UpdatePagination from "./components/NavPagination/NavPagination.js";
 // geschweifte Klammern, um den epxort von mehreren Komponenten zu notieren
 // ohne geschweifte Klammern, wenn expo default
 
@@ -42,7 +43,7 @@ async function fetchCharacters() {
       )
     )
   );
-  updatePagination(page, maxPage);
+  UpdatePagination(page, maxPage);
 }
 fetchCharacters();
 
@@ -73,6 +74,3 @@ prevButton.addEventListener("click", () => {
   page -= 1; // short: page--;
   fetchCharacters();
 });
-function updatePagination(page, maxPage) {
-  pagination.textContent = `${page} / ${maxPage}`;
-}
