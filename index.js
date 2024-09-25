@@ -24,6 +24,7 @@ async function fetchCharacters() {
   const url = "https://rickandmortyapi.com/api/character";
   const response = await fetch(url);
   const data = await response.json();
+  cardContainer.innerHTML = "";
   console.log(data);
   data.results.forEach((card) =>
     cardContainer.append(
@@ -38,7 +39,6 @@ async function fetchCharacters() {
   );
 }
 fetchCharacters();
-
 
 // States
 const maxPage = 1;
