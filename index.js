@@ -20,7 +20,25 @@ function renderAndAppendCharacterCard() {
   // b) in append() schon das return implizit ist
 }
 
-renderAndAppendCharacterCard();
+async function fetchCharacters() {
+  const url = "https://rickandmortyapi.com/api/character";
+  const response = await fetch(url);
+  const data = await response.json();
+  cardContainer.innerHTML = "";
+  console.log(data);
+  data.results.forEach((card) =>
+    cardContainer.append(
+      CharacterCard(
+        card.image,
+        card.name,
+        card.status,
+        card.type,
+        card.episode.length
+      )
+    )
+  );
+}
+fetchCharacters();
 
 // States
 const maxPage = 1;
