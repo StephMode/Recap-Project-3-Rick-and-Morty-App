@@ -51,7 +51,7 @@ searchBar.addEventListener("submit", (event) => {
   const searchResult = event.target.query.value; // hier muss ich .query. adressieren, weil das der name meines input ist, der output des event wird quasi als object zurückgegeben, dass via .notation explizit adressiert werden
   searchQuery = searchResult;
   console.log(searchQuery);
-  fetchCharacters(); //die fn wird hier einfach nur gecalled, weil die URL in fetch characters sich dynamisch durch die temp literals anpasst und im eventLst die let searchQuery
+  fetchCharacters(); //die fn wird hier einfach nur gecalled, weil die URL in fetch characters sich dynamisch durch die temp literals anpasst und im eventLst die let searchQuery so neu definiert wird, dass in der gecallten fn dann die URL auf den value der form submission hin angepasst wird
 });
 
 // nicht vergessen: wenn ich auf das event eines evList zurückgreifen möchte, so muss ich das event als param für die callbakc fn deifnierten
